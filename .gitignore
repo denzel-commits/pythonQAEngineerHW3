@@ -1,0 +1,4 @@
+__pycache__
+.idea
+data/input_files/*
+data/output_files/*
