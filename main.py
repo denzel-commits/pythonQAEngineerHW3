@@ -1,16 +1,12 @@
-# This is a sample Python script.
+from src.utils import get_users_from_json, get_books_from_csv
+from configuration import INPUT_FILE_PATH
 
-# Press Shift+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
-
-
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
-
-
-# Press the green button in the gutter to run the script.
 if __name__ == '__main__':
-    print_hi('PyCharm')
+    books_file = INPUT_FILE_PATH + "books.csv"
+    users_file = INPUT_FILE_PATH + "users.json"
 
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+    books = get_books_from_csv(books_file)
+    users = get_users_from_json(users_file)
+
+    print(len(books), f"{books=}")
+    print(len(users), f"{users=}")
