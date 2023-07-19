@@ -26,16 +26,13 @@ def distribute_books(books_file, users_file, result_file):
             "books": collected_books[user["_id"]],
         })
 
-    for key, value in enumerate(result_dict):
-        print(key, len(value["books"]), value)
-
     json_dump(result_dict, result_file)
 
 
 if __name__ == '__main__':
-    books_file = INPUT_FILE_PATH + "books.csv"
-    users_file = INPUT_FILE_PATH + "users.json"
-    result_file = OUTPUT_FILE_PATH + "result.json"
+    books_file_path = INPUT_FILE_PATH + "books.csv"
+    users_file_path = INPUT_FILE_PATH + "users.json"
+    result_file_path = OUTPUT_FILE_PATH + "result.json"
 
-    distribute_books(books_file, users_file, result_file)
+    distribute_books(books_file_path, users_file_path, result_file_path)
 
