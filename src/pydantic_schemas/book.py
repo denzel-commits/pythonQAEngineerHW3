@@ -6,11 +6,3 @@ class Book(BaseModel):
     author: str
     pages: int
     genre: str
-
-
-class User(BaseModel):
-    name: str
-    gender: str
-    address: str
-    age: int
-    books: list[Book]
