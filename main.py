@@ -35,4 +35,3 @@ if __name__ == '__main__':
     result_file_path = OUTPUT_FILE_PATH + "result.json"
 
     distribute_books(books_file_path, users_file_path, result_file_path)
-
