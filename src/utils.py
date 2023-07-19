@@ -8,7 +8,7 @@ def json_dump(obj: dict, filename: str) -> None:
         json.dump(obj, f, ensure_ascii=False, indent=4)
 
 
-def get_books_from_csv(filename: str) -> list[dict]:
+def csv_read(filename: str) -> list[dict]:
     if os.path.exists(filename):
         with open(filename, "r", newline="") as csvfile:
             return list(csv.DictReader(csvfile))
@@ -18,7 +18,7 @@ def get_books_from_csv(filename: str) -> list[dict]:
             'пожалуйста, предоставьте файл по указанному пути')
 
 
-def get_users_from_json(filename: str) -> list[dict]:
+def json_load(filename: str) -> list[dict]:
     if os.path.exists(filename):
         with open(filename, "r") as f:
             return json.load(f)
@@ -26,3 +26,14 @@ def get_users_from_json(filename: str) -> list[dict]:
         raise FileNotFoundError(
                 f'Файл {filename} не найден,\n'
                 'пожалуйста, предоставьте файл по указанному пути')
+
+
+def csv_read_gen(filename: str) -> list[dict]:
+    if os.path.exists(filename):
+        with open(filename, "r", newline="") as csvfile:
+            for row in csv.DictReader(csvfile):
+                yield row
+    else:
+        raise FileNotFoundError(
+            f'Файл {filename} не найден,\n'
+            'пожалуйста, предоставьте файл по указанному пути')
