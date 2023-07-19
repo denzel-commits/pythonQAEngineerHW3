@@ -1,7 +1,7 @@
 import pytest
 import json
 from configuration import OUTPUT_FILE_PATH
-from src.pydantic_schemas.result_json import User
+from src.pydantic_schemas.user import User
 
 
 @pytest.mark.parametrize("result_file_path", [OUTPUT_FILE_PATH+"result.json"])
