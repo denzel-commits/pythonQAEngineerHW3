@@ -1,28 +1,28 @@
-from src.utils import json_load, csv_read_gen, json_dump
+from src.utils import json_load, csv_read_gen, json_dump, csv_read
 from configuration import INPUT_FILE_PATH, OUTPUT_FILE_PATH
 
 
 def distribute_books(books_file, users_file):
     users = json_load(users_file)
 
-    collected_books = {user["_id"]: [] for user in users}
-    for i, book in enumerate(csv_read_gen(books_file)):
-        user_id = users[i % len(users)]["_id"]
+    users_output = [{
+        "name": user["name"],
+        "gender": user["gender"],
+        "address": user["address"],
+        "age": user["age"],
+        "books": [],
+        } for user in users]
 
-        collected_books[user_id].append({
+    users_num = len(users)
+    for i, book in enumerate(csv_read_gen(books_file)):
+        users_output[i % users_num].append({
             "title": book["Title"],
             "author": book["Author"],
             "pages": int(book["Pages"]),
             "genre": book["Genre"],
         })
 
-    return [{
-        "name": user["name"],
-        "gender": user["gender"],
-        "address": user["address"],
-        "age": user["age"],
-        "books": collected_books[user["_id"]],
-        } for user in users]
+    return users_output
 
 
 if __name__ == '__main__':
